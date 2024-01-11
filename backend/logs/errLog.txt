@@ -1,0 +1,21 @@
+20240104	20:36:08	56471c99-d29b-4f67-8a71-be83bef159f9	Error: not allowed by CORS
+20240104	20:36:11	dafafa9b-c2a4-4503-a06a-ba12704a20b2	Error: not allowed by CORS
+20240104	23:39:18	2c239422-36f8-4043-a27a-6f22dec57f7d	ReferenceError: uuid is not defined
+20240104	23:39:31	05e29ed5-6ed1-4063-868f-fef91969f626	ReferenceError: uuid is not defined
+20240104	23:39:59	c0ba9bc0-3bde-44ba-b369-ab283eedb10a	TypeError: uuid is not a function
+20240104	23:40:02	6c6064ad-07ac-42a9-837e-1a51da7f47e1	TypeError: uuid is not a function
+20240104	23:40:32	ae3d61da-b301-4432-b4bc-b2c5546bcb96	ReferenceError: data is not defined
+20240104	23:41:20	692bbbec-9be8-46ec-a8c7-03224a15cf6b	ReferenceError: users is not defined
+20240105	17:03:10	6b6a867d-1afb-490c-aba8-d1135edbbb44	TypeError: authHeader.split is not a function
+20240105	19:50:48	18f988ff-ddb2-421e-92b1-1e835aefddda	TypeError: allowedOrigins.includes is not a function
+20240105	19:51:02	e77820a5-3e82-4243-92c7-8af60405a38c	TypeError: allowedOrigins.includes is not a function
+20240105	19:51:03	40fef68a-378a-4113-a2d7-5b5d26924a5b	TypeError: allowedOrigins.includes is not a function
+20240105	19:51:59	704cfaa6-12e6-4b7f-9b85-b54987239a95	TypeError: allowedOrigins.indexOf is not a function
+20240105	19:56:58	81a00779-c8c4-4bf3-b04d-5567bf75f29e	TypeError: Cannot read properties of undefined (reading 'email')
+20240108	20:20:32	8e09cb35-79a5-45c2-94d1-827c55be27e9	Error: not allowed by CORS
+20240108	20:22:44	b1801dd3-bbb6-47b0-9e45-dea72e97ef99	Error: not allowed by CORS
+20240108	20:23:30	19a1c176-b577-43a6-ad46-38c50181718f	Error: not allowed by CORS
+20240108	20:25:25	90ae591c-bf49-48c4-b8d4-fed909c694bb	Error: not allowed by CORS
+20240108	20:31:15	da610041-6be1-41df-ac6f-629fe3dd82f3	Error: not allowed by CORS
+20240108	20:31:32	69f9f42d-766d-47f8-ae36-f34cfe5a9251	Error: not allowed by CORS
+20240108	20:32:27	abb99e75-0d6c-406f-9137-b46dec7b1d73	Error: not allowed by CORS
