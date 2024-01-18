@@ -2,7 +2,7 @@ const { client } = require('../config/dbConnection')
 const jwt = require('jsonwebtoken');
 
 const handleRefreshToken = async (req, res) => {
-    const cookies = req.cookies
+    const cookies = await req.cookies
     if(!cookies?.jwt) return res.sendStatus(401)
     const refreshToken = cookies.jwt
 
@@ -19,19 +19,19 @@ const handleRefreshToken = async (req, res) => {
         process.env.REFRESH_TOKEN_SECRET,
         (err, decoded) => {
             if(err || foundUser.email !== decoded.email) return res.sendStatus(403); 
-            const roles = Object.values(foundUser.roles)
-
+            const role = foundUser.role
+            
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {
                         "email": foundUser.email,
-                        "roles": roles
+                        "role": role
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                {expiresIn: '30m'}
+                {expiresIn: '15m'}
             );
-            res.json({accessToken})
+            res.json({role, accessToken, username: foundUser.username})
         }  
     )
 }

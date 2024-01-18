@@ -1,10 +1,14 @@
 const { client } = require('../config/dbConnection')
+const { ObjectId } = require('mongodb');
+
+
+
 
 const db = client.db('ITransitionPRJ');
 const usersCollection = db.collection('usersData');
 
 
-const getAllUsers = async (req, res) => {
+const getAllUsers  = async (req, res) => {
     try {
         await client.connect();
         
@@ -19,16 +23,18 @@ const getAllUsers = async (req, res) => {
 const blockUser = async (req, res) => {
     try {
         await client.connect();
-        const user = await usersCollection.findOne({ userId: req.body.userId });
+        const userId = req.body.id;
+        const user = await usersCollection.findOne({ id: userId });
         if(!user) {
-            return res.status(400).json({"message": `user ID ${req.body.userId} not found`})
+            return res.status(400).json({"message": `user ID ${req.body.id} not found`})
         }
         if(user.active) {
             await usersCollection.updateOne(
-                { userId: req.body.userId },
+                { id: userId },
                 { $set: { active: false } }
             );
         }
+
         res.json('successfully blocked')
     } catch (error) {
         console.error(error);
@@ -40,13 +46,15 @@ const blockUser = async (req, res) => {
 const unblockUser = async (req, res) => {
     try {
         await client.connect();
-        const user = await usersCollection.findOne({ userId: req.body.userId });
+        const userId = req.body.id;
+
+        const user = await usersCollection.findOne({ id: userId });
         if(!user) {
-            return res.status(400).json({"message": `user ID ${req.body.userId} not found`})
+            return res.status(400).json({"message": `user ID ${userId} not found`})
         }
         if(!user.active) {
             await usersCollection.updateOne(
-                { userId: req.body.userId },
+                { id: userId },
                 { $set: { active: true } }
             );
         }
@@ -61,21 +69,22 @@ const unblockUser = async (req, res) => {
 const addToAdmins = async (req, res) => {
     try {
         await client.connect();
+        const userId = req.body.id;
 
-        const user = await usersCollection.findOne({ userId: req.body.userId });
+        const user = await usersCollection.findOne({ id: userId });
 
         if (!user) {
-            return res.status(400).json({ "message": `User ID ${req.body.userId} not found` });
+            return res.status(400).json({ "message": `User ID ${id} not found` });
         }
 
-        const roles = Object.values(user.roles);
-        const isAdmin = roles.includes("ADMIN");
+        const role = user.role;
+        const isAdmin = role === '5150';
         if (isAdmin) {
             return res.status(400).json({ "message": `${user.username} is already an admin` });
         }
-        user.roles.ADMIN = "5150";
+        user.role = "5150";
 
-        await usersCollection.updateOne({ userId: req.body.userId }, { $set: { roles: user.roles } });
+        await usersCollection.updateOne({ id: userId }, { $set: { role: user.role } });
 
         res.json(`You have successfully added ${user.username} to the admin list`);
     } catch (error) {
@@ -88,20 +97,22 @@ const addToAdmins = async (req, res) => {
 const removeFromAdmins = async (req, res) => {
     try {
         await client.connect();
+        const userId = req.body.id;
 
-        const user = await usersCollection.findOne({ userId: req.body.userId });
+        const user = await usersCollection.findOne({ id: userId });
 
         if (!user) {
-            return res.status(400).json({ "message": `User ID ${req.body.userId} not found` });
+            console.log("true")
+            return res.status(400).json({ "message": `User ID ${id} not found` });
         }
 
-        const roles = Object.values(user.roles);
-        const isAdmin = roles.includes("ADMIN");
-        if (isAdmin) {
+        const role = user.role;
+        const isNotAdmin = role === '2001';
+        if (isNotAdmin) {
             return res.status(400).json({ "message": `${user.username} is already an admin` });
         }
-        user.roles = {"USER": "2001"} 
-        await usersCollection.updateOne({ userId: req.body.userId }, { $set: { roles: user.roles } });
+        user.role = "2001"
+        await usersCollection.updateOne({ id: userId }, { $set: { role: user.role } });
 
         res.json(`You have successfully removed ${user.username} from the admin list`);
     } catch (error) {
@@ -114,11 +125,15 @@ const removeFromAdmins = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         await client.connect();
-        const user = await usersCollection.findOne({ userId: req.body.userId });
+
+        const userId = req.params.userId;
+        const user = await usersCollection.findOne({ id: userId });
+
         if(!user) {
-            return res.status(400).json({"message": `user ID ${req.body.userId} not found`})
+            return res.status(400).json({"message": `user ID ${userId} not found`})
         }
-        await usersCollection.deleteOne(user)
+        const deletedUser = await usersCollection.findOneAndDelete({ id: userId });
+
         res.json(`You have successfully deleted user: ${user.username}`)
     } catch (error) {
         console.error(error);

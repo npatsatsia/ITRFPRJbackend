@@ -19,17 +19,23 @@ const handleAuth = async (req, res) => {
         }
         const match = await bcrypt.compare(password, foundUser.password)
         if (match) {
-            const roles = Object.values(foundUser.roles).filter(Boolean);
+            if (!foundUser.active) {
+                return res.status(403).json({
+                    error: 'AccountBlocked',
+                    message: 'Your account has been blocked. Please contact admin for assistance.'
+                });
+            }
+            const role = foundUser.role
             // create JWTs
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {
                         "email": foundUser.email,
-                        "roles": roles
+                        "role": role
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '30m' }
+                { expiresIn: '15m' }
             );
             const refreshToken = jwt.sign(
                 { "email": foundUser.email },
@@ -41,10 +47,9 @@ const handleAuth = async (req, res) => {
                 { $set: { refreshToken: refreshToken } }
             );
     
-            res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 }); // maybe we need this:  secure: true,
+            res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 }); // maybe we need this:  secure: true,
     
-            res.json({ roles, accessToken });
-    
+            res.json({ role, accessToken, username: foundUser.username });
         } else {
             res.sendStatus(401);
         }

@@ -88,10 +88,9 @@ const deleteItem = async (req, res) => {
         
         const collection = await collectionsData.findOne({ id: req.body.id });
         const requestOwner = await usersCollection.findOne({ email: req.email }); // This may not be a good idea, but it is simple
-        const userRoles = Object.values(requestOwner.roles);
-        console.log(userRoles.includes("5150"))
+        const userRole = requestOwner.role;
 
-        if(collection && collection.ownerId !== requestOwner.userId && !userRoles.includes("5150") ){
+        if(collection && collection.ownerId !== requestOwner.userId && !userRole !== "5150"){
             return res.status(403).json({"message": `You can not delete a collection by id ${req.body.id}`})
         }
 

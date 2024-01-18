@@ -26,13 +26,10 @@ const registerUser = async (req, res) => {
 
     const newUser = {
       userId: uuidv4(),
-      username: username,
+      username: username.toLowerCase(),
       password: hashedPassword,
       email: email,
-      roles: {
-        "USER": "2001",
-        "ADMIN": "5150"
-      },
+      role: '2001',
        active: true
     };
 

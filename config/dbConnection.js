@@ -1,6 +1,6 @@
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://npatsatsia1:180897Pat$0@arch.dsnfjjv.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://npatsatsia1:180897Pat$0@arch.dsnfjjv.mongodb.net/?retryWrites=true&w=majority"
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 4000

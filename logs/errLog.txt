@@ -19,3 +19,14 @@
 20240108	20:31:15	da610041-6be1-41df-ac6f-629fe3dd82f3	Error: not allowed by CORS
 20240108	20:31:32	69f9f42d-766d-47f8-ae36-f34cfe5a9251	Error: not allowed by CORS
 20240108	20:32:27	abb99e75-0d6c-406f-9137-b46dec7b1d73	Error: not allowed by CORS
+20240112	00:50:41	78fdc270-37b7-45d4-a47d-076729152abd	PayloadTooLargeError: request entity too large
+20240112	00:53:19	4b29e040-687d-43ad-8d69-01aecf23785c	PayloadTooLargeError: request entity too large
+20240112	00:53:27	ed18f53e-b097-4431-96bc-1ef88f4c4b66	PayloadTooLargeError: request entity too large
+20240112	01:46:18	782878f3-884d-491c-b042-0062e3c2744a	PayloadTooLargeError: request entity too large
+20240112	13:13:47	da988f5f-374d-4574-9666-d737d38bf767	MulterError: Unexpected field
+20240112	13:23:18	ed610217-253d-4036-8ca6-cca1edd8ac15	MulterError: Unexpected field
+20240114	14:12:59	0dfa287b-5b7b-48a9-8130-a489a50f4b13	ReferenceError: role is not defined
+20240114	14:16:58	b0a2364b-0450-4a6e-b9af-be323f2d797f	ReferenceError: role is not defined
+20240114	14:16:58	7fa08451-e048-4131-91f3-bba48f690444	ReferenceError: role is not defined
+20240115	22:55:59	fbdb800a-00a1-4d5d-a666-60581017c552	TypeError: usersController.getAllUsers(...) is not a function
+20240115	22:55:59	b1ee80cb-9956-469e-a047-04c013845160	TypeError: usersController.getAllUsers(...) is not a function
