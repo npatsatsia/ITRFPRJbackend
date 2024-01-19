@@ -8,9 +8,16 @@ router.route('/')
     .get(verifyRoles(ROLES_LIST.USER, ROLES_LIST.ADMIN), colectionsController.getPrivateCollections)
     .post(verifyRoles(ROLES_LIST.USER, ROLES_LIST.ADMIN), colectionsController.createCollection)
     .put(verifyRoles(ROLES_LIST.USER, ROLES_LIST.ADMIN), colectionsController.editCollection)
-    .delete(verifyRoles(ROLES_LIST.USER, ROLES_LIST.ADMIN), colectionsController.deleteCollection)
-
+    
 router.route('/admin')
     .get(verifyRoles(ROLES_LIST.ADMIN), colectionsController.getAllCollections)
+
+router.route('/allowed')
+    .get(colectionsController.allowedToManage)
+
+router.route('/:id')
+    .get(colectionsController.getCollectionPage)
+    .delete(verifyRoles(ROLES_LIST.USER, ROLES_LIST.ADMIN), colectionsController.deleteCollection)
+
     
 module.exports = router

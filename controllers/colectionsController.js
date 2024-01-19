@@ -32,7 +32,7 @@ const getPrivateCollections = async (req, res) => {
         let collections = [];
         const requestedBy = await usersCollection.findOne({ email: req.email });
 
-        const requestedById = requestedBy.id
+        const requestedById = requestedBy.userId
 
 
         if (requestedBy.role.includes("2001")) {
@@ -47,7 +47,44 @@ const getPrivateCollections = async (req, res) => {
     }
 };
 
+const getCollectionPage = async (req, res) => {
+    try {
+        await client.connect();
 
+        let collection = {};
+
+        if (req.params) {
+            collection = await collectionsData.findOne({id: req.params.id})
+        }else {
+            res.status(404).json({ error: `Collection ID: ${req.params} Not Found` });
+        }
+
+        res.json(collection);
+    } catch (error) {
+        console.error('Error fetching collection:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+
+const allowedToManage = async (req, res) => {
+    try {
+        await client.connect();
+        let allowed = false
+
+        const requestedBy = await usersCollection.findOne({ email: req.email });
+        const collectionOwner = collectionsData.findOne({id: req.body.id})
+
+        if(collectionOwner || requestedBy.role.includes("5150")) {
+            allowed = true
+        }
+
+        res.json(allowed);
+    } catch (error) {
+        console.error('Error fetching collection:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
 
 
 const createCollection = async (req, res) => {
@@ -60,7 +97,7 @@ const createCollection = async (req, res) => {
         const collections = await collectionsData.find({}).toArray()
         const duplicateCollection = collections.find(collection => collection.ownerId === ownerId && collection.name.toLowerCase() === name.toLowerCase())
 
-        const requestedBy = usersCollection.findOne({email: req.email})
+        const requestedBy = await usersCollection.findOne({email: req.email})
         const requestedId = requestedBy.userId
 
         if(duplicateCollection){
@@ -118,18 +155,20 @@ const deleteCollection = async (req, res) => {
     try {
         await client.connect();
 
-        const id = req.body.id;
+        const id = req.params.id;
         
         const collection = await collectionsData.findOne({ id });
         const requestOwner = await usersCollection.findOne({ email: req.email }); // This may not be a good idea, but it is simple
         const userRole = requestOwner.role;
 
-        if(collection && collection.ownerId !== requestOwner.id && userRole !== '5150' ){
-            return res.status(403).json({"message": `You can not delete a collection by id ${req.body.id}`})
+        console.log(userRole, requestOwner.userId, collection)
+
+        if(collection && collection.ownerId !== requestOwner.userId && userRole.includes("5150") ){
+            return res.status(403).json({"message": `You can not delete a collection by id ${req.params.id}`})
         }
 
         if(!collection){
-            return res.status(400).json({"message": `Collection ID is ${req.body.id}`})
+            return res.status(400).json({"message": `Collection ID is ${req.params.id}`})
         }
         await collectionsData.deleteOne(collection)
 
@@ -140,7 +179,7 @@ const deleteCollection = async (req, res) => {
     }
 }
 
-  module.exports = {getAllCollections, getPrivateCollections, createCollection, editCollection, deleteCollection}
+  module.exports = {getAllCollections, getPrivateCollections, allowedToManage, getCollectionPage, createCollection, editCollection, deleteCollection}
 
 
   

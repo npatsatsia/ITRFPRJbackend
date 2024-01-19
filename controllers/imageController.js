@@ -6,21 +6,14 @@ const { v4: uuidv4 } = require('uuid');
 const db = client.db('ITransitionPRJ');
 const collectionsData = db.collection('collections');
 
-const containerName = process.env.CONTAINER_NAME;
-
 const blobServiceClient = new BlobServiceClient(`https://itrprj.blob.core.windows.net/collections?sp=racwd&st=2024-01-12T11:22:07Z&se=2024-07-31T19:22:07Z&spr=https&sv=2022-11-02&sr=c&sig=9SvQVKBCgHShITy61KC%2FXNjZeaWuCqxkUQPqbnu%2FiFo%3D`);
-const containerClient = blobServiceClient.getContainerClient(containerName);
-
 
 
 async function extractMetadata(headers) {
   const contentType = headers['content-type'];
-  const fileType = contentType.split('/')[1];
-  const contentDisposition = headers['content-disposition'] || '';
-  const caption = headers['x-image-caption'] || 'No caption provided';
-  const matches = /filename="([^"]+)"/i.exec(contentDisposition);
-  const fileName = matches?.[1] || `image-${Date.now()}.${fileType}`;
-  return { fileName, caption, fileType };
+  const fileTypeStr = contentType.split('/')[1];
+  const fileType = fileTypeStr.split(', ')[0]
+  return { fileType };
 }
 
 async function streamToBuffer(dataStream) {
@@ -32,36 +25,40 @@ async function streamToBuffer(dataStream) {
   });
 }
 
-async function uploadImageStreamed(blobName, dataStream) {
-  const blobClient = containerClient.getBlockBlobClient(blobName);
+async function uploadImageStreamed(blobName, dataStream, exitingCollectionName) {
+    const containerClient = blobServiceClient.getContainerClient(exitingCollectionName);
   
-  const buffer = await streamToBuffer(dataStream);
-  
-  await blobClient.uploadData(buffer, { contentType: 'image/png' });
-  
-  return blobClient.url;
-}
-
-async function handleImageUpload(req, res) {
-  res.setHeader('Content-Type', 'application/json');
-  if (req.originalUrl === '/collections/image/upload' && req.method === 'POST') {
-    try {
-      const { fileType } = await extractMetadata(req.headers);
-      const generatedUUID = uuidv4();
-      const imageUrl = await uploadImageStreamed(generatedUUID, req);
-
-      res.writeHead(201);
-      res.end(JSON.stringify({ imageUrl }));
-    } catch (error) {
-      console.error('Error:', error);
-      res.writeHead(500);
-      res.end(JSON.stringify({ error: 'Internal Server Error' }));
-    }
-  } else {
-    res.writeHead(404);
-    res.end(JSON.stringify({ error: 'Not Found' }));
+    const blobClient = containerClient.getBlockBlobClient(blobName);
+    
+    const buffer = await streamToBuffer(dataStream);
+    
+    await blobClient.uploadData(buffer, { contentType: 'image/png' });
+    
+    return blobClient.url;
   }
-}
+
+  async function handleImageUpload(req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    if (req.originalUrl === '/collections/image/upload' && req.method === 'POST') {
+      try {
+        const { fileType } = await extractMetadata(req.headers);
+        const generatedUUID = uuidv4()
+        const imageName = `${generatedUUID + '.' + fileType}`
+        const imageUrl = req.body.collectionId? await uploadImageStreamed(imageName, req, req.body.collectionId) : await uploadImageStreamed(imageName, req, generatedUUID);
+        
+        res.writeHead(201);
+        res.end(JSON.stringify({ imageUrl }));
+      } catch (error) {
+        console.error('Error:', error);
+        res.writeHead(500);
+        res.end(JSON.stringify({ error: 'Internal Server Error' }));
+      }
+    } else {
+      res.writeHead(404);
+      res.end(JSON.stringify({ error: 'Not Found' }));
+    }
+  }
+
 
 async function handleImageDelete(req, res) {
   res.setHeader('Content-Type', 'application/json');

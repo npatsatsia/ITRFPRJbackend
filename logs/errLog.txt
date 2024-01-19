@@ -30,3 +30,5 @@
 20240114	14:16:58	7fa08451-e048-4131-91f3-bba48f690444	ReferenceError: role is not defined
 20240115	22:55:59	fbdb800a-00a1-4d5d-a666-60581017c552	TypeError: usersController.getAllUsers(...) is not a function
 20240115	22:55:59	b1ee80cb-9956-469e-a047-04c013845160	TypeError: usersController.getAllUsers(...) is not a function
+20240118	17:13:08	686e9ff5-95bf-4dc4-9741-7bf3bf28abda	PayloadTooLargeError: request entity too large
+20240118	17:14:13	0dab0929-3729-4411-bcaf-2146beb4ecc0	SyntaxError: Unexpected token � in JSON at position 0
