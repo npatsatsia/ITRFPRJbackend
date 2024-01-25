@@ -20158,3 +20158,6 @@
 20240125	23:43:32	ca1ed91e-7e20-4652-abc0-5e48d3ed1a30	OPTIONS	http://localhost:3000	/users
 20240125	23:43:32	1e1840f2-3654-44ec-8e3c-63c1eb40058a	GET	http://localhost:3000	/users
 20240125	23:43:32	ec2c3bb2-a08d-4cc5-ba91-f680eeb25b68	GET	http://localhost:3000	/users
+20240126	00:04:07	65735ec3-2284-4aa2-b049-70ccfe1606c7	GET	http://localhost:3000	/refresh
+20240126	00:04:08	aee8d805-6d1e-41b5-9cb3-7147630d6e8b	GET	http://localhost:3000	/refresh
+20240126	00:19:01	f92e9da2-28aa-40c3-883a-b5c4f532c863	POST	undefined	/login
