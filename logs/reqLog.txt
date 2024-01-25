@@ -20117,3 +20117,9 @@
 20240125	13:38:49	81a661f8-b0dc-4edd-81a3-7b97309a8282	GET	http://localhost:3000	/refresh
 20240125	13:38:49	ab110a12-5139-4924-ab84-e80f696a3cbc	GET	http://localhost:3000	/refresh
 20240125	13:38:49	7e6a0ac1-6dac-4f8e-b14c-89503978181a	GET	http://localhost:3000	/refresh
+20240125	14:11:13	6301b605-10d6-45c0-97fe-363e708ba711	OPTIONS	https://itraprjui-5b3425e40a9e.herokuapp.com	/refresh
+20240125	14:11:13	7ab01ce3-a822-472a-9408-924fe2598a19	OPTIONS	https://itraprjui-5b3425e40a9e.herokuapp.com	/refresh
+20240125	14:11:13	c2e0b2cd-3093-4993-9700-b839677ec50d	GET	https://itraprjui-5b3425e40a9e.herokuapp.com	/refresh
+20240125	14:11:13	ed0801b9-5e84-4cb7-8adb-c84865e27b3f	GET	https://itraprjui-5b3425e40a9e.herokuapp.com	/refresh
+20240125	14:11:13	e160043c-4986-440f-96f5-b17c43f41adb	GET	https://itraprjui-5b3425e40a9e.herokuapp.com	/refresh
+20240125	14:28:40	e12c4374-738f-422c-b5c4-af921bad42a9	GET	undefined	/auth/google/callback?code=4%2F0AfJohXkzMLHU59Ne62nHtdsn0wgHNddqtqEPsGR3-No6ddngMCENfzJn7apT3RyeLMPrzw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent
