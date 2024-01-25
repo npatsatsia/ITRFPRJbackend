@@ -48,7 +48,7 @@ const handleAuth = async (req, res) => {
                 { $set: { refreshToken: refreshToken } }
             );
     
-            res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', domain: '.vercell.app', maxAge: 24 * 60 * 60 * 1000 }); // maybe we need this:  secure: true,
+            res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', domain: '.vercel.app', maxAge: 24 * 60 * 60 * 1000 }); // maybe we need this:  secure: true,
             res.json({ role, accessToken, username: foundUser.username });
         } else {
             res.sendStatus(401);
