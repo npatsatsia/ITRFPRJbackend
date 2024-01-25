@@ -20060,3 +20060,4 @@
 20240125	00:44:09	b2773a14-2f3d-4684-a408-d7a0981373f2	GET	http://localhost:3000	/collections/allowed
 20240125	00:44:11	7ab13450-2f2b-46a9-807d-9733e0feecce	OPTIONS	http://localhost:3000	/items/item/9998fbbf-ba61-44e9-a791-af6247cec4b7
 20240125	00:44:11	999db8bf-8252-4c89-bbec-2d196eed1e36	GET	http://localhost:3000	/items/item/9998fbbf-ba61-44e9-a791-af6247cec4b7
+20240125	11:01:52	d96bf646-f169-4f46-8fa2-062738fdac10	GET	undefined	/auth/google
