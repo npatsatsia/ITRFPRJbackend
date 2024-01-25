@@ -16,7 +16,7 @@ function isLoggedin (req, res, next) {
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "http://localhost:3500/auth/github/callback",
+    callbackURL: "https://itrabackend-0a797af92f8e.herokuapp.com/auth/github/callback",
     scope: ['user:email', 'read:user'],
     passReqToCallback: true
   },
@@ -88,7 +88,7 @@ passport.use(new GitHubStrategy({
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3500/auth/google/callback",
+    callbackURL: "https://itrabackend-0a797af92f8e.herokuapp.com/auth/google/callback",
     passReqToCallback: true
   },
   async function(request, accessjwt, refreshjwt, profile, done) {
