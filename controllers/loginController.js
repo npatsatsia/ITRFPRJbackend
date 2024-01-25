@@ -51,7 +51,6 @@ const handleAuth = async (req, res) => {
             res.cookie('jwt', refreshToken, { httpOnly: true, 
                 secure: true, 
                 sameSite: 'None', 
-                domain: '.herokuapp.com',
                 maxAge: 24 * 60 * 60 * 1000 }); // maybe we need this:  secure: true,
             res.json({ role, accessToken, username: foundUser.username });
         } else {
