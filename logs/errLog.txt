@@ -32,3 +32,114 @@
 20240115	22:55:59	b1ee80cb-9956-469e-a047-04c013845160	TypeError: usersController.getAllUsers(...) is not a function
 20240118	17:13:08	686e9ff5-95bf-4dc4-9741-7bf3bf28abda	PayloadTooLargeError: request entity too large
 20240118	17:14:13	0dab0929-3729-4411-bcaf-2146beb4ecc0	SyntaxError: Unexpected token � in JSON at position 0
+20240121	15:37:11	8f368ef9-e9d0-4e4d-9047-5bf8bf372bce	SyntaxError: Unexpected token " in JSON at position 0
+20240121	15:38:16	b042d4ed-31f9-4607-adbd-082acf753180	SyntaxError: Unexpected token " in JSON at position 0
+20240121	22:55:36	033e155a-f396-402b-b8d4-45366d99040c	Error: not allowed by CORS
+20240121	22:55:36	f8894df8-6569-4153-8dbf-c131d2033de3	Error: not allowed by CORS
+20240121	22:55:36	c8b3d607-8a19-4648-ac83-4616205a7e2a	Error: not allowed by CORS
+20240121	22:55:44	fe1fc84a-7cec-4350-9bd9-ec64e935d7e6	Error: not allowed by CORS
+20240121	22:55:44	d6ed4fd5-f04b-488e-bbe2-50bc955dda11	Error: not allowed by CORS
+20240121	22:55:50	b2fea000-f0ef-4baf-8e44-55765c2ff3f9	Error: not allowed by CORS
+20240121	22:55:57	18135e93-4b4b-468b-8c3e-d1a4a8520c80	Error: not allowed by CORS
+20240121	22:56:01	d876a9fc-5c3c-4823-a01f-9bdf4996c055	Error: not allowed by CORS
+20240121	23:35:09	4dc8180b-2e95-4830-91f2-48763bd10b35	Error: not allowed by CORS
+20240121	23:52:52	0eb2c2e0-a81b-46dd-99b6-76296bbc3fbc	Error: not allowed by CORS
+20240123	01:34:24	7d02f243-8917-4825-bff0-4f8e3fb0f95e	ReferenceError: error is not defined
+20240123	01:44:59	ea3cc9d5-d570-4e58-9b6d-8ae75ed31a11	TypeError: this.authenticate is not a function
+20240123	01:44:59	20c0c042-b23c-4bd5-93c2-bf608a39cca3	TypeError: this.authenticate is not a function
+20240123	01:45:10	2943c897-4934-44e2-952b-8d8ed3586fa8	TypeError: this.authenticate is not a function
+20240123	02:03:04	38193e45-c92f-477e-a856-4e8f21f060f6	TypeError: this.authenticate is not a function
+20240123	02:03:04	1dec2cf9-3ac5-484a-adbe-5c3cefd1cc43	TypeError: this.authenticate is not a function
+20240123	02:03:04	7efc399e-42be-4afd-b5b0-304be4fe6ae8	TypeError: this.authenticate is not a function
+20240123	02:03:05	873e78df-6e7a-45ae-9aa7-3aaf687febcb	TypeError: this.authenticate is not a function
+20240123	02:05:22	9d6ab1a7-8e0a-4e7f-9aae-31d8d3b47716	TypeError: this.authenticate is not a function
+20240123	02:05:22	60b020bb-fa3a-4704-9073-06aa2f80da4a	TypeError: this.authenticate is not a function
+20240123	02:05:22	46fd7e88-9551-40dd-bd3e-e4d8ef1d8c3d	TypeError: this.authenticate is not a function
+20240123	02:05:25	b5d99a4c-3563-45da-ab19-ef72310645e3	TypeError: this.authenticate is not a function
+20240123	02:05:43	ad5bc2fd-4e6d-42c3-9015-1861a1f5b0f9	TypeError: this.authenticate is not a function
+20240123	02:05:43	34867929-e0e8-4c34-9943-79010f9b5cb2	TypeError: this.authenticate is not a function
+20240123	02:05:45	3c6c4d86-a1e1-47b7-9c7f-158be9f22db9	TypeError: this.authenticate is not a function
+20240123	02:06:12	63a6297b-6514-4955-9e67-d987826d65ea	TypeError: this.authenticate is not a function
+20240123	02:06:12	d627d629-fd41-49cd-8e9f-ec2c465f6dfb	TypeError: this.authenticate is not a function
+20240123	02:06:13	3ba06039-c572-435c-87dc-c5445a66c205	TypeError: this.authenticate is not a function
+20240123	02:06:16	306edc18-bc8f-44e8-9c37-72e4e59e9728	TypeError: this.authenticate is not a function
+20240123	02:07:51	01a3c918-e035-408d-87f8-7595e982319f	TypeError: this.authenticate is not a function
+20240123	02:07:51	526af63a-7361-4be4-b6e9-e75700fbb001	TypeError: this.authenticate is not a function
+20240123	02:07:51	36fc59b5-35b4-4b9a-8cf0-03e3f304336d	TypeError: this.authenticate is not a function
+20240123	02:07:53	1a75e472-6839-4a51-8a57-92ba65db7352	TypeError: this.authenticate is not a function
+20240123	02:07:56	35a78c42-4660-49b2-9a0f-339eb11dc1d1	TypeError: this.authenticate is not a function
+20240123	02:09:27	d25c4f84-8727-4295-9198-0695949cd0e8	TypeError: this.authenticate is not a function
+20240123	02:09:27	283ed88d-5c6c-45be-9cd8-3f5217732649	TypeError: this.authenticate is not a function
+20240123	02:40:23	9a7ce3b8-c691-4412-a7e6-2858b76c3775	TokenError: Bad Request
+20240123	02:50:33	24faf753-0ccc-4176-be76-e7cc6e9b9c3d	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:52:03	684e90dc-9e95-4694-95db-03ccc1e26e4f	TypeError: this.authenticate is not a function
+20240123	02:52:04	6e74ab55-9c49-4534-8ea2-d48bde80e20e	TypeError: this.authenticate is not a function
+20240123	02:52:04	f99492e8-6456-4a9f-8962-3603fff5115e	TypeError: this.authenticate is not a function
+20240123	02:52:08	6e2c2792-8641-430b-afda-b0c8f970ccb1	TypeError: this.authenticate is not a function
+20240123	02:52:08	497ece00-b83b-471a-9358-ed6fdf4a376c	TypeError: this.authenticate is not a function
+20240123	02:52:08	bb268eb5-c0c9-41c0-a02e-8444707a8896	TypeError: this.authenticate is not a function
+20240123	02:52:23	41bc9f0c-1d4d-4d64-aa03-a6554410efa6	TypeError: this.authenticate is not a function
+20240123	02:52:23	2aa0226a-21d7-4027-8184-57f051e095a1	TypeError: this.authenticate is not a function
+20240123	02:52:27	617c1a6d-c39e-4c39-a736-214df8d6ac27	TypeError: this.authenticate is not a function
+20240123	02:52:27	e9f456b1-b1dc-457c-8a97-8d520a37d4e3	TypeError: this.authenticate is not a function
+20240123	02:52:29	fbaa42ea-32d6-48d5-b9c1-07ecb842b33b	TypeError: this.authenticate is not a function
+20240123	02:52:31	1558b156-d302-4e29-94da-34fe02b22d68	TypeError: this.authenticate is not a function
+20240123	02:52:31	046ad1a9-e2c5-402f-8086-df4798b2ef74	TypeError: this.authenticate is not a function
+20240123	02:52:31	b61520c4-bebe-4363-aeb9-b486847ce6fb	TypeError: this.authenticate is not a function
+20240123	02:54:21	5adbe45d-bf78-4c65-a7ea-4e80709cd7bd	TypeError: this.authenticate is not a function
+20240123	02:54:22	57d9b93a-8fea-4a26-bc32-e440a398317a	TypeError: this.authenticate is not a function
+20240123	02:54:25	f5637b59-2b2e-41b6-9e7b-410b4022edb5	TypeError: this.authenticate is not a function
+20240123	02:54:25	1798bb62-5437-4219-8ef7-056a4d12c4ad	TypeError: this.authenticate is not a function
+20240123	02:54:25	0f03ceee-82b8-46bd-ac0d-105e6f724811	TypeError: this.authenticate is not a function
+20240123	02:54:26	55563b33-c591-4303-b22a-78e4cfbbc07f	TypeError: this.authenticate is not a function
+20240123	02:54:26	e462d638-a900-4a8a-a590-6ac3d0fe8c4c	TypeError: this.authenticate is not a function
+20240123	02:54:26	d4000ac4-c24b-4a6b-bb9f-ae901c291a62	TypeError: this.authenticate is not a function
+20240123	02:54:31	0073e43c-5c56-4b35-8251-38eb97fbc9e3	TypeError: this.authenticate is not a function
+20240123	02:54:31	46f4b0b4-fc88-4d64-b624-ac872f7b4a84	TypeError: this.authenticate is not a function
+20240123	02:54:33	5a0ff14c-f6d7-4f00-9c5c-b0dcf6977e56	TypeError: this.authenticate is not a function
+20240123	02:54:33	01cd3867-2a48-4d04-b924-382ac180f470	TypeError: this.authenticate is not a function
+20240123	02:54:33	21080b89-c9ce-48ef-957f-cd497e4d9b55	TypeError: this.authenticate is not a function
+20240123	02:55:42	26e76101-a8f0-4c6f-969e-6ee3468ee5a6	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:55:42	702b8b32-e3d0-44df-a784-f0030740982e	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:55:45	9ee9bcc0-64eb-4235-879c-adbd360dc087	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:55:45	1a9e4dba-3ec1-43b8-957a-1f1653f847d9	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:55:47	528984af-2a29-40a6-b650-4234f1251f99	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:55:47	0b399487-39a9-4275-9fcf-a87b16cb1dbb	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:55:47	94e41c53-3770-4680-aff8-ad288f15d784	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:55:51	0ef03373-06d1-4458-9cf0-ecdaf87851ed	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:55:51	6c6ab4ff-293b-4fc6-8251-8c382d7d0a07	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:56:36	13a9c0e0-7b15-4681-bcde-0905358b4da9	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:56:47	59c54579-51b9-4567-9fb2-b31f67333cfe	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:56:49	dc255b68-0952-4250-8100-2b47be4f315e	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	02:56:49	a9f13ed3-a3cc-4e3d-ba88-c26b71d840f3	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	03:01:34	07af7215-69d8-470e-b1be-caabc9005f46	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	03:01:37	f44a90ff-d0bc-4f44-868c-2703208d5eac	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	03:01:37	7926d633-76fe-46f8-9d1e-af3f1f4344e1	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	03:01:37	9d124c52-b61a-4b11-9b82-129e7f073a5c	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	03:01:37	2a964f19-4248-4eba-bc92-57ac7557837c	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	03:01:38	ba4e8c11-377a-42a8-8f90-94a8afa9515d	Error: Login sessions require session support. Did you forget to use `express-session` middleware?
+20240123	09:47:56	19f69bcf-daed-47b4-a5b8-474c2ffb5148	TokenError: Bad Request
+20240123	11:29:42	f9709aed-7dfc-4a35-8d85-87fe697e0836	Error: Failed to serialize user into session
+20240123	11:32:26	f7dc209b-cba0-45ce-9ab2-bc076a37b48e	Error: Failed to serialize user into session
+20240123	11:37:09	aa2d4fed-7e22-47b6-8da6-9c9e901a5287	TokenError: Bad Request
+20240123	11:37:24	45ad9bea-454f-45b4-ba24-7281b96c1315	Error: Failed to serialize user into session
+20240123	11:37:48	990f20d4-00ba-445a-a910-42516e973e64	Error: Failed to serialize user into session
+20240123	11:39:07	a3612b33-a80a-47e3-ba97-4305a5ca54b5	Error: Failed to serialize user into session
+20240123	11:39:33	57bb6606-d9c4-417e-be95-b9c1d25fb021	Error: Failed to serialize user into session
+20240123	11:40:03	94f68d42-5b9b-4a98-8878-54ea3d7e7adf	Error: Failed to serialize user into session
+20240123	14:23:05	7d3da7fb-cfce-4b0c-a50c-0245ecea614c	Error: Unknown authentication strategy "github"
+20240123	14:26:31	69e34ed1-7190-4f77-9dff-05139cfe8d61	Error: Unknown authentication strategy "github"
+20240123	14:26:33	57af299b-c36b-4551-9acc-5980effceabd	Error: Unknown authentication strategy "github"
+20240123	14:28:28	0084b18f-3664-4034-bdad-b36733e81ed5	Error: Unknown authentication strategy "github"
+20240123	14:29:14	810d2b15-9015-4cba-ab9d-cc8b5e5cd32e	Error: Unknown authentication strategy "github"
+20240123	14:30:29	95241c3f-fb03-4d9f-ad1a-b068d8f9717c	Error: Unknown authentication strategy "github"
+20240123	14:36:38	e5d5cab2-be88-4961-8fe2-303077c0ac70	TokenError: Bad Request
+20240123	15:02:45	5c03f251-3791-4f3c-94e8-967b49e32cc7	Error: Failed to obtain access token
+20240123	15:34:24	92038354-f313-49b2-9f9d-f6f3a5ea3383	InternalOAuthError: Failed to fetch user emails
+20240123	15:37:32	05538aff-3891-4570-a95d-47367ba3d826	InternalOAuthError: Failed to fetch user emails
+20240123	15:40:15	c923b710-d556-4e19-81cf-1eb104aeb80a	InternalOAuthError: Failed to fetch user emails
+20240123	15:40:57	180fcd43-a64e-494a-bb32-74235507139d	InternalOAuthError: Failed to fetch user emails
+20240123	15:43:28	2ed79c8c-1973-47a1-b75b-f9b8719e4b0a	InternalOAuthError: Failed to fetch user emails
+20240123	15:54:26	ea8423e7-79a5-4618-b737-a2db14f97264	InternalOAuthError: Failed to fetch user emails
+20240123	16:07:35	b3882467-2408-432f-a5cf-eec7131da62c	InternalOAuthError: Failed to fetch user emails
+20240123	16:08:19	7d07855d-6db9-4b57-834b-8d753a5656db	InternalOAuthError: Failed to fetch user emails

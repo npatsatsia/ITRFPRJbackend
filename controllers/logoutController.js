@@ -21,7 +21,10 @@ const handleLogout = async (req, res) => {
         { $set: { refreshToken: '' } }
     );
 
-    res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true}); 
+    res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
+    res.clearCookie('connect.sid');
+    req.session.destroy()
+
     res.sendStatus(204)
 }
 

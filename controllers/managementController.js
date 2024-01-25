@@ -23,14 +23,14 @@ const getAllUsers  = async (req, res) => {
 const blockUser = async (req, res) => {
     try {
         await client.connect();
-        const userId = req.body.id;
-        const user = await usersCollection.findOne({ id: userId });
+        const userId = req.body.userId;
+        const user = await usersCollection.findOne({ userId });
         if(!user) {
-            return res.status(400).json({"message": `user ID ${req.body.id} not found`})
+            return res.status(400).json({"message": `user ID ${req.body.userId} not found`})
         }
         if(user.active) {
             await usersCollection.updateOne(
-                { id: userId },
+                { userId },
                 { $set: { active: false } }
             );
         }
@@ -46,15 +46,15 @@ const blockUser = async (req, res) => {
 const unblockUser = async (req, res) => {
     try {
         await client.connect();
-        const userId = req.body.id;
+        const userId = req.body.userId;
 
-        const user = await usersCollection.findOne({ id: userId });
+        const user = await usersCollection.findOne({ userId });
         if(!user) {
             return res.status(400).json({"message": `user ID ${userId} not found`})
         }
         if(!user.active) {
             await usersCollection.updateOne(
-                { id: userId },
+                { userId },
                 { $set: { active: true } }
             );
         }
@@ -69,22 +69,21 @@ const unblockUser = async (req, res) => {
 const addToAdmins = async (req, res) => {
     try {
         await client.connect();
-        const userId = req.body.id;
+        const userId = req.body.userId;
 
-        const user = await usersCollection.findOne({ id: userId });
+        const user = await usersCollection.findOne({ userId });
 
         if (!user) {
             return res.status(400).json({ "message": `User ID ${id} not found` });
         }
 
         const role = user.role;
-        const isAdmin = role === '5150';
+        const isAdmin = role.includes('5150');
         if (isAdmin) {
             return res.status(400).json({ "message": `${user.username} is already an admin` });
         }
-        user.role = "5150";
 
-        await usersCollection.updateOne({ id: userId }, { $set: { role: user.role } });
+        await usersCollection.updateOne({ userId }, { $set: { role: ["5150", '2001'] } });
 
         res.json(`You have successfully added ${user.username} to the admin list`);
     } catch (error) {
@@ -97,22 +96,22 @@ const addToAdmins = async (req, res) => {
 const removeFromAdmins = async (req, res) => {
     try {
         await client.connect();
-        const userId = req.body.id;
+        const userId = req.body.userId;
 
-        const user = await usersCollection.findOne({ id: userId });
+        const user = await usersCollection.findOne({ userId });
 
         if (!user) {
             console.log("true")
-            return res.status(400).json({ "message": `User ID ${id} not found` });
+            return res.status(400).json({ "message": `User ID ${userId} not found` });
         }
 
         const role = user.role;
-        const isNotAdmin = role === '2001';
-        if (isNotAdmin) {
-            return res.status(400).json({ "message": `${user.username} is already an admin` });
+        const isAdmin = role.includes('5150');
+        if (!isAdmin) {
+            return res.status(400).json({ "message": `${user.username} is not an admin` });
+        }else {
+            await usersCollection.updateOne({ userId }, { $set: { role: "2001" } });
         }
-        user.role = "2001"
-        await usersCollection.updateOne({ id: userId }, { $set: { role: user.role } });
 
         res.json(`You have successfully removed ${user.username} from the admin list`);
     } catch (error) {
@@ -127,12 +126,12 @@ const deleteUser = async (req, res) => {
         await client.connect();
 
         const userId = req.params.userId;
-        const user = await usersCollection.findOne({ id: userId });
+        const user = await usersCollection.findOne({ userId });
 
         if(!user) {
             return res.status(400).json({"message": `user ID ${userId} not found`})
         }
-        const deletedUser = await usersCollection.findOneAndDelete({ id: userId });
+        const deletedUser = await usersCollection.deleteOne({ userId: userId });
 
         res.json(`You have successfully deleted user: ${user.username}`)
     } catch (error) {

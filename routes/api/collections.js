@@ -3,6 +3,10 @@ const router = express.Router();
 const colectionsController = require('../../controllers/colectionsController')
 const ROLES_LIST = require('../../config/roles_list')
 const verifyRoles = require('../../middleware/verifyRoles')
+const {isLoggedin} = require('../../config/passportConfig')
+
+
+isLoggedin()
 
 router.route('/')
     .get(verifyRoles(ROLES_LIST.USER, ROLES_LIST.ADMIN), colectionsController.getPrivateCollections)

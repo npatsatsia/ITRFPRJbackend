@@ -5,6 +5,24 @@ const db = client.db('ITransitionPRJ');
 const collectionsData = db.collection('collections');
 const usersCollection = db.collection('usersData');
 
+
+  function groupByType(object, type) {
+    const result = {};
+  
+    for (const key in object) {
+      const [propertyType, propertyNumber, propertyAttribute] = key.split('_');
+      if ((propertyType + "_" + propertyNumber).includes(type)) {
+        if (!result[propertyNumber]) {
+          result[propertyNumber] = {};
+        }
+        const newKey = key; // Use the original key as the new key
+        result[propertyNumber][newKey] = object[key];
+      }
+    }
+  
+    return result;
+  }
+
 // ამ ლოგიკაში ადმინს აზრი ეკარგება
 const getAllCollections = async (req, res) => {
     try {
@@ -52,14 +70,21 @@ const getCollectionPage = async (req, res) => {
         await client.connect();
 
         let collection = {};
+        let sortedCustomFields = {}
 
         if (req.params) {
             collection = await collectionsData.findOne({id: req.params.id})
+            const checkboxArray = Object.values(groupByType(collection?.customFields, "custom_checkbox"));
+            const dateArray = Object.values(groupByType(collection?.customFields, "custom_date"));
+            const integerArray = Object.values(groupByType(collection?.customFields, "custom_integer"));
+            const stringArray = Object.values(groupByType(collection?.customFields, "custom_string"));
+          
+            sortedCustomFields = { checkboxArray, dateArray, integerArray, stringArray }
         }else {
             res.status(404).json({ error: `Collection ID: ${req.params} Not Found` });
         }
 
-        res.json(collection);
+        res.json({collection, sortedCustomFields});
     } catch (error) {
         console.error('Error fetching collection:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -88,7 +113,7 @@ const allowedToManage = async (req, res) => {
 
 
 const createCollection = async (req, res) => {
-    const {name, description, categoryId, image, ownerId, customFields} = req.body
+    const {name, ownerId} = req.body
 
     try {
         await client.connect();
@@ -104,52 +129,70 @@ const createCollection = async (req, res) => {
             return res.status(403).json({"message": `You already own a collection by name ${name}`})
         }
 
-        const result = await collectionsData.insertOne({
-            ownerId: requestedId,
-            id,
-            name,
-            description,
-            categoryId,
-            image,
-            customFields
-          })
-        res.json(result);
+        const result = await collectionsData.insertOne({...req.body, id, ownerId: requestedId})
+        res.json({...result, id, ownerId: requestedId});
     } catch (error) {
         console.error('Error Adding Collection:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
 
-const editCollection = async (req, res) => {
+const editCollectionn = async (req, res) => {
     try {
         await client.connect();
 
         const collection = await collectionsData.findOne({ id: req.body.id });
         const requestOwner = await usersCollection.findOne({ email: req.email }); // This may not be a good idea, but it is simple
 
-        if(collection.ownerId !== requestOwner.userId ){
+        if(collection.ownerId !== requestOwner.userId || !requestOwner.role.includes("5150")){
             return res.status(403).json({"message": `You can not delete a collection by id ${req.body.id}`})
         }
         
-        const result = await collectionsData.updateOne({
-            name,
-            description,
-            topic,
-            image,
-            "fields": {
-              "fixed": ["id", "name", "tags"],
-              "custom": [
-                {"type": "integer", "name": "CustomInt1"},
-                {"type": "integer", "name": "CustomInt2"}
-              ]
-            }
-          })
+        const result = await collectionsData.updateOne(
+
+        );
         res.json(result);
     } catch (error) {
         console.error('Error While Editing Collection:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+const editCollection = async (req, res) => {
+    try {
+        await client.connect();
+
+        const existingCollection = await collectionsData.findOne({ id: req.body.id });
+        if (!existingCollection) {
+            return res.status(404).json({ "message": `Collection with id ${req.body.id} not found` });
+        }
+
+        const requestOwner = await usersCollection.findOne({ email: req.email });
+
+        if (existingCollection.ownerId !== requestOwner.userId || !requestOwner.role.includes("5150")) {
+            return res.status(403).json({ "message": `You can not edit a collection with id ${req.body.id}` });
+        }
+
+        // Create a modified document with the desired updates (excluding _id and ownerId)
+        const modifiedDocument = {
+            ...existingCollection,  
+            ...req.body,
+            _id: existingCollection._id,
+            ownerId: existingCollection.ownerId
+        };
+
+        // Perform the update using the modified document
+        const result = await collectionsData.replaceOne(
+            { id: req.body.id },
+            modifiedDocument
+        );
+
+        res.json(result);
+    } catch (error) {
+        console.error('Error While Editing Collection:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
 
 const deleteCollection = async (req, res) => {
     try {

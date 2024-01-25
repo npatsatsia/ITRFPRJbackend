@@ -30,7 +30,7 @@ const registerUser = async (req, res) => {
       password: hashedPassword,
       email: email,
       role: '2001',
-       active: true
+      active: true
     };
 
     const result = await usersCollection.insertOne(newUser);

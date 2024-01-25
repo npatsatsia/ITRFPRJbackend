@@ -3,8 +3,10 @@ const router = express.Router();
 const usersController = require('../../controllers/managementController')
 const ROLES_LIST = require('../../config/roles_list')
 const verifyRoles = require('../../middleware/verifyRoles');
+const {isLoggedin} = require('../../config/passportConfig')
 
 
+isLoggedin()
 
 router.route('/').get(verifyRoles(ROLES_LIST.ADMIN), usersController.getAllUsers)
 router.route('/block').put(verifyRoles(ROLES_LIST.ADMIN), usersController.blockUser)
