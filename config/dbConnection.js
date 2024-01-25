@@ -7,12 +7,8 @@ const client = new MongoClient(process.env.MONGODB_URI, {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  },
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  ssl: true,
+  }
 });
-
 
 const runMDB = async () => {
   try {
@@ -25,7 +21,6 @@ const runMDB = async () => {
     await client.close();
   }
 };
-
 
 
 
