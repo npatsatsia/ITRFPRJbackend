@@ -79,7 +79,6 @@ passport.use(new GitHubStrategy({
 
     function setCookies(request, refreshToken) {
         request.res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
-        localStorage.setItem('jwt', refreshToken)
     } // maybe we need this:  secure: true,
     setCookies(request, refreshToken);
     done(null, { role: "2001", accessToken, username: profile.username });

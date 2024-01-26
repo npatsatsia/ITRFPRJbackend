@@ -2,12 +2,9 @@ const { client } = require('../config/dbConnection')
 const jwt = require('jsonwebtoken');
 
 const handleRefreshToken = async (req, res) => {
-    // const cookies = await req.cookies
-    const cookies = localStorage.getItem('jwt')
-
-    if(!cookies) return res.sendStatus(401)
-    // const refreshToken = cookies.jwt
-    const refreshToken = cookies
+    const cookies = await req.cookies
+    if(!cookies?.jwt) return res.sendStatus(401)
+    const refreshToken = cookies.jwt
 
     await client.connect();
 
