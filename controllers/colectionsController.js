@@ -5,6 +5,24 @@ const db = client.db('ITransitionPRJ');
 const collectionsData = db.collection('collections');
 const usersCollection = db.collection('usersData');
 
+
+  function groupByType(object, type) {
+    const result = {};
+  
+    for (const key in object) {
+      const [propertyType, propertyNumber, propertyAttribute] = key.split('_');
+      if ((propertyType + "_" + propertyNumber).includes(type)) {
+        if (!result[propertyNumber]) {
+          result[propertyNumber] = {};
+        }
+        const newKey = key; // Use the original key as the new key
+        result[propertyNumber][newKey] = object[key];
+      }
+    }
+  
+    return result;
+  }
+
 // ამ ლოგიკაში ადმინს აზრი ეკარგება
 const getAllCollections = async (req, res) => {
     try {
@@ -46,7 +64,6 @@ const getPrivateCollections = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
 
 const allowedToManage = async (req, res) => {
     try {
