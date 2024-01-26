@@ -1,10 +1,12 @@
 const { client } = require('../config/dbConnection')
 
 const handleLogout = async (req, res) => {
-    const cookies = req.cookies
-    if(!cookies?.jwt) return res.sendStatus(204)
+    // const cookies = req.cookies
+    const cookies = localStorage.getItem('jwt')
 
-    const refreshToken = cookies.jwt
+    if(!cookies) return res.sendStatus(204)
+
+    const refreshToken = cookies
 
     await client.connect();
 
@@ -14,6 +16,7 @@ const handleLogout = async (req, res) => {
     const foundUser = await usersCollection.findOne({ refreshToken });
     if(!foundUser) {
         res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true})
+        localStorage.removeItem('jwt')
         return res.sendStatus(204)
     }
     const result = await usersCollection.updateOne(
@@ -23,6 +26,8 @@ const handleLogout = async (req, res) => {
 
     res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
     res.clearCookie('connect.sid');
+    localStorage.removeItem('jwt')
+
     req.session.destroy()
 
     res.sendStatus(204)
