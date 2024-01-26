@@ -27,7 +27,6 @@ const handleAuth = async (req, res) => {
             }
             const role = foundUser.role
             // create JWTs
-            console.log('cookie added')
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {
@@ -52,6 +51,7 @@ const handleAuth = async (req, res) => {
                 secure: true, 
                 sameSite: 'None', 
                 maxAge: 24 * 60 * 60 * 1000 }); // maybe we need this:  secure: true,
+            localStorage.setItem('jwt', refreshToken)
             res.json({ role, accessToken, username: foundUser.username });
         } else {
             res.sendStatus(401);
