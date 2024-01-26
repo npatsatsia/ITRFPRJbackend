@@ -43,6 +43,7 @@ app.use('/auth', require('./routes/api/socialAuth'))
 app.use('/refresh', require('./routes/refreshToken'))
 app.use('/logout', require('./routes/logout'))
 app.use('/categories', require('./routes/api/categories'))
+app.use('/collection', require('./routes/api/singleCollection'))
 
 app.use(verifyJWT)
 app.use('/users', require('./routes/api/management'))

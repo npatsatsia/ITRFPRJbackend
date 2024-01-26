@@ -20,7 +20,6 @@ router.route('/allowed')
     .get(colectionsController.allowedToManage)
 
 router.route('/:id')
-    .get(colectionsController.getCollectionPage)
     .delete(verifyRoles(ROLES_LIST.USER, ROLES_LIST.ADMIN), colectionsController.deleteCollection)
 
     
