@@ -19,7 +19,7 @@ const passport = require('passport')
 
 const PORT = process.env.PORT || 3500
 
-const server = http.createServer(app);
+// const server = http.createServer(app);
 
 app.use(logger)
 
@@ -51,8 +51,9 @@ app.use('/users', require('./routes/api/management'))
 app.use('/collections', require('./routes/api/collections'))
 app.use('/items', require('./routes/api/items'))
 app.use('/collections/image', require('./routes/api/image'))
+app.use('/tags', require('./routes/api/tags'))
 
-setupWebSocket(server);
+// setupWebSocket(server);
 
 
 app.all('*', (req, res) => {
@@ -95,4 +96,3 @@ const startServer = async () => {
 };
 
 startServer();
-

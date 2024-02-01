@@ -19,31 +19,3 @@ const verifyJWT = (req, res, next) => {
 
 module.exports = verifyJWT
 
-// const jwt = require('jsonwebtoken');
-
-// const verifyJWT = (req, res, next) => {
-//     const authHeader = req.headers.authorization || req.headers.Authorization;
-
-//     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-//         console.log('Invalid Authorization Header');
-//         return res.sendStatus(401);
-//     }
-
-//     const token = authHeader.split(' ')[1];
-
-//     jwt.verify(
-//         token,
-//         process.env.ACCESS_TOKEN_SECRET,
-//         (err, decoded) => {
-//             if (err) {
-//                 console.error('JWT Verification Error:', err);
-//                 return res.sendStatus(403); // Invalid token
-//             }
-//             req.email = decoded.UserInfo.email;
-//             req.roles = decoded.UserInfo.roles;
-//             next();
-//         }
-//     );
-// }
-
-// module.exports = verifyJWT;
