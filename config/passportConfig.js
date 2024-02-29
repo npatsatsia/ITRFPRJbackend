@@ -10,7 +10,6 @@ const usersCollection = db.collection('usersData');
 
 function isLoggedin (req, res, next) {
     // req.profile? next() : res.status(401)
-    console.log("logged in")
 }
 
 passport.use(new GitHubStrategy({

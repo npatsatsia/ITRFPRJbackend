@@ -101,7 +101,6 @@ const removeFromAdmins = async (req, res) => {
         const user = await usersCollection.findOne({ userId });
 
         if (!user) {
-            console.log("true")
             return res.status(400).json({ "message": `User ID ${userId} not found` });
         }
 

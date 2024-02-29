@@ -27,7 +27,6 @@ const handleAuth = async (req, res) => {
             }
             const role = foundUser.role
             // create JWTs
-            console.log('cookie added')
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {

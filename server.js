@@ -4,6 +4,7 @@ const express = require('express')
 const session = require('express-session');
 const app = express()
 const http = require('http');
+const socketIo = require('socket.io');
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const sessionOptions = require('./config/sessionOptions')
@@ -13,13 +14,13 @@ const errorHandler = require('./middleware/errorHandler')
 const verifyJWT = require('./middleware/verifyJWT')
 const cookieParser = require('cookie-parser')
 const {runMDB, client} = require('./config/dbConnection')
-const { setupWebSocket } = require('./config/websocket');
 const passport = require('passport')
 
 
 const PORT = process.env.PORT || 3500
 
-// const server = http.createServer(app);
+
+
 
 app.use(logger)
 
@@ -33,8 +34,12 @@ app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser())
-
-
+const server = http.createServer(app);
+module.exports = io = socketIo(server, {
+  cors: {
+    origin:['http://localhost:3000']
+  }
+});
 
 app.use('/', require('./routes/root'))
 app.use('/register', require('./routes/register'))
@@ -51,9 +56,10 @@ app.use('/users', require('./routes/api/management'))
 app.use('/collections', require('./routes/api/collections'))
 app.use('/items', require('./routes/api/items'))
 app.use('/collections/image', require('./routes/api/image'))
+
 app.use('/tags', require('./routes/api/tags'))
 
-// setupWebSocket(server);
+app.use('/comments', require('./routes/api/comments'))
 
 
 app.all('*', (req, res) => {
@@ -88,9 +94,17 @@ process.on('SIGUSR2', async () => {
   process.exit(0);
 });
 
+io.on('connection', (socket) => {
+  
+  // Handle disconnection
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
 const startServer = async () => {
   await runMDB();
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
   });
 };

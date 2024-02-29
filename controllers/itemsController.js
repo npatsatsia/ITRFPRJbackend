@@ -32,7 +32,6 @@ const getSingleItem = async (req, res) => {
 };
 
 const addItem = async (req, res) => {
-    console.log(req.body)
     try {
         await client.connect();
         

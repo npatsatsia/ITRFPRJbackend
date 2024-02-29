@@ -148,3 +148,6 @@
 20240125	14:11:13	8cac843e-6dfd-4ac9-9a0d-b5c2b077b6ce	Error: not allowed by CORS
 20240125	14:11:13	638cd5e6-faef-4a18-92ac-0ea6e4a6a14d	Error: not allowed by CORS
 20240125	14:11:13	3e81956e-0cbf-4096-9ee4-8b8d4edcf9a1	Error: not allowed by CORS
+20240203	16:40:35	78efe5c6-d167-4d26-bb78-c959e500f6ae	Error: not allowed by CORS
+20240203	16:40:35	4e9737ab-3c1c-4671-91c2-b268379c0650	Error: not allowed by CORS
+20240203	16:40:35	bb376396-d2e7-4eb5-94c1-8a3c48d2f73d	Error: not allowed by CORS
